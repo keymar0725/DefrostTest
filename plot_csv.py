@@ -8,7 +8,7 @@ import os
 ### setup ###
 rcParams["font.family"] = "sans-serif"
 rcParams["font.sans-serif"] = ["Meiryo"]
-out_dir = "img/"
+out_dir = "out/"
 os.makedirs(out_dir, exist_ok=True)
 
 ### argument ###
@@ -26,7 +26,9 @@ df = pd.read_csv(import_file, names = col_name,
 
 
 # filter DataFrame
-plt_num = int(df.iloc[10,1])
+df_pltNum = df.loc[df[1] == 'データ数']
+plt_num = df_pltNum.iloc[0,1]
+
 header_num = int(df.iloc[0,1]) - 7
 _df = df[header_num:]
 
@@ -77,41 +79,3 @@ for ch, names in zip(channels, ch_names):
 ax.legend()
 fig.show()
 fig.savefig(out_dir + "ダンボール有.jpg")
-
-
-# for test_2: 40℃ 温水解凍
-# ch1 = []
-# ch2 = []
-# ch3 = []
-# ch4 = []
-# ch5 = []
-
-# channels = [ch1, ch2, ch3, ch4, ch5]
-# ch_names = ["水温", 
-#             "一斗缶(表面)", 
-#             "ゆず果汁(表面)", 
-#             "一斗缶(中心)",  
-#             "ゆず果汁(中心)"
-#            ]
-
-# for ch, j in zip(channels, range(5)):
-#     for i in range(1000, 82123, 3600):
-#         a = _df2.iloc[i,j]
-#         if j != 0 and float(a) > 0 and ch[-1] <= 0:
-#             print("ch{0} : {1} 時間".format(j+1, len(ch)))
-#         ch.append(float(a))
-
-# fig = plt.figure(figsize=(9, 7), dpi=300)
-# ax = fig.add_subplot(111)
-# ax.set_title('温水解凍(40℃)')
-# ax.set_xlabel('time [h]')
-# ax.set_ylabel('Temparature [℃]')
-# ax.axhline(y=0, xmin=0, xmax=750, color='red', lw=1, ls='--')
-
-
-# for ch, names in zip(channels, ch_names):
-#     ax.plot(ch, label = names)
-
-# ax.legend()
-# fig.show()
-# fig.savefig(out_dir + "温水_40.jpg")

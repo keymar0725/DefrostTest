@@ -34,6 +34,20 @@ python3 plot_csv.py argv0 argv1 argv2
 * argv1: チャンネル（センサ）数
 * argv2: プロットピッチ (1min = 60, 1hour = 3600)
 
+
+# Usage
+
+in home directory
+
+```bash
+git clone https://github.com/keymar0725/DefrostTest.git
+```
+
+```bash
+cd (cloneしたディレクトリ)
+python3 plot_csv.py argv0 argv1 argv2
+```
+
 # Author
 
 * Takahashi KEISUKE
