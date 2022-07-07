@@ -7,12 +7,12 @@
 # Requirement
 
 * python3.10.5
+* Pandas
 
 # Installation
 
 ```bash
-pip install selenium
-brew install chromedriver
+pip install pandas
 ```
 
 # Usage
