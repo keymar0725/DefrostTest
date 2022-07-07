@@ -19,7 +19,7 @@ pip install pandas
 
 # Usage
 
-任意のディレクトリでclone
+git clone in any dirctory
 
 ```bash
 git clone https://github.com/keymar0725/DefrostTest.git
@@ -28,18 +28,24 @@ git clone https://github.com/keymar0725/DefrostTest.git
 
 ```bash
 cd DefrostTest
-python plot_csv.py argv0 argv1 argv2
+python main.py (argv0) (argv1) (argv2)
 ```
 
-* argv0: csvファイルのパス
-* argv1: チャンネル（センサ）数
-* argv2: プロットピッチ (1min = 60, 1hour = 3600)
+or
+
+```bash
+python ./(cloned dir)/DefrostTest/main.py argv0 argv1 argv2
+```
+
+* argv0: csv file path
+* argv1: Channel number
+* argv2: Plot pitch (1min = 60, 1hour = 3600)
 
 
 # Example
 
 ```bash
-~\\home\\DefrostTest > python plot_csv.py import/解凍テスト久原本家食品(段ボール有り).CSV 9 3600
+python plot_csv.py import/example_01.CSV 9 3600
 ```
 
 # Author
