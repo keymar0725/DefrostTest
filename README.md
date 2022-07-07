@@ -19,15 +19,16 @@ pip install pandas
 
 # Usage
 
-in home directory
+任意のディレクトリでclone
 
 ```bash
 git clone https://github.com/keymar0725/DefrostTest.git
 ```
 
+
 ```bash
-cd (cloneしたディレクトリ)
-python3 plot_csv.py argv0 argv1 argv2
+cd DefrostTest
+python plot_csv.py argv0 argv1 argv2
 ```
 
 * argv0: csvファイルのパス
@@ -35,17 +36,10 @@ python3 plot_csv.py argv0 argv1 argv2
 * argv2: プロットピッチ (1min = 60, 1hour = 3600)
 
 
-# Usage
-
-in home directory
+# Example
 
 ```bash
-git clone https://github.com/keymar0725/DefrostTest.git
-```
-
-```bash
-cd (cloneしたディレクトリ)
-python3 plot_csv.py argv0 argv1 argv2
+~\\home\\DefrostTest > python plot_csv.py import/解凍テスト久原本家食品(段ボール有り).CSV 9 3600
 ```
 
 # Author
