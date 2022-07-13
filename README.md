@@ -10,11 +10,13 @@
 
 * python3.10.5
 * Pandas
+* Matplotlib
 
 # Installation
 
 ```bash
 pip install pandas
+pip install matplotlib
 ```
 
 # Usage
@@ -29,25 +31,25 @@ make image of graph.
 
 ```bash
 cd DefrostTest
-python main.py (argv0) (argv1) (argv2)
+python3 main.py argv1 argv2 argv3 argv4
 ```
 
 or
 
 ```bash
-python ./(cloned dir)/DefrostTest/main.py argv0 argv1 argv2
+python3 ./(cloned dir)/DefrostTest/main.py argv1 argv2 argv3 argv4
 ```
 
-* argv0: Path to csv file
-* argv1: Channel number
-* argv2: Plot pitch
+* argv1: Path to csv file
+* argv2: Channel number
+* argv3: Plot pitch
     ex)1s = 1, 1min = 60, 1hour = 3600
-
+* argv4: Enviroment channel
 
 # Example
 
 ```bash
-python plot_csv.py import/example_01.CSV 9 3600
+python plot_csv.py ./import/example_01.CSV 9 3600 1
 ```
 
 ![ダンボール有](https://user-images.githubusercontent.com/47661559/177715451-16ba89ac-fcd3-4529-a745-0fc2129ee838.jpg)
