@@ -41,7 +41,7 @@ python ./(cloned dir)/DefrostTest/main.py argv0 argv1 argv2
 * argv0: Path to csv file
 * argv1: Channel number
 * argv2: Plot pitch
-  ex)1s = 1, 1min = 60, 1hour = 3600
+    ex)1s = 1, 1min = 60, 1hour = 3600
 
 
 # Example
