@@ -15,10 +15,18 @@ os.makedirs(out_dir, exist_ok=True)
 
 #######
 # Argument
-import_file = sys.argv[1]  # csv file
+import_file = sys.argv[1]       # csv file
 ch_num = int(sys.argv[2])       # channel number
 plt_pitch = int(sys.argv[3])    # plot pitch
-ch_inner = int(sys.argv[4])     # 庫内 channel
+if plt_pitch==3600:
+    plt_name = "1h"
+elif plt_pitch==1800:
+    plt_name = "30m"
+elif plt_pitch == 1:
+    plt_name = "1m"
+
+ch_inner = int(sys.argv[3])     # 庫内 channel
+
 
 # Debug
 print("Input file: {0} ({1})".format(os.path.basename(import_file), type(import_file)))
@@ -40,7 +48,6 @@ df = pd.read_csv(import_file, names = col_name,
 
 # filter DF
 plt_num = int(df.loc[df[1] == 'データ数'].iloc[0,1])
-
 header_num = int(df.iloc[0,1]) - 7
 _df = df[header_num:]
 
@@ -71,10 +78,12 @@ for i in range(ch_num):
 
 for ch, j in zip(channels, range(ch_num)):
     for i in range(0, plt_num, plt_pitch):
-        a = _df.iloc[i,j]
-        # if plt_pitch==3600 and j!=ch_inner-1 and float(a)>0 and  ch[-1]<=0:
-        #     print("ch{0} : {1} h".format(j+1, len(ch)))
-        ch.append(float(a))
+        a = float(_df.iloc[i,j])
+        if plt_pitch==3600 and j!=ch_inner-1 and a>0 and  len(ch)!=0 and ch[-1]<=0:
+            print("ch{0} : {1} h".format(j+1, len(ch)))
+        if plt_pitch==1800 and j!=ch_inner-1 and a>0 and  len(ch)!=0 and ch[-1]<=0:
+            print("ch{0} : {1:.1f} h".format(j+1, len(ch)/2))
+        ch.append(a)
 
 # Plot init
 fig = plt.figure(figsize=(9, 7), dpi=300)
@@ -90,4 +99,4 @@ for ch, names in zip(channels, ch_names):
 
 ax.legend()
 fig.show()
-fig.savefig(out_dir + "{}.jpg".format(out_name))
+fig.savefig(out_dir + "{0}_{1}".format(out_name, plt_name)+".jpg")
