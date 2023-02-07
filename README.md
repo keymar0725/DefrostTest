@@ -53,7 +53,7 @@ python3 ./(cloned dir)/DefrostTest/main.py argv1 argv2 argv3 argv4
 python plot_csv.py ./import/example_01.CSV 9 3600 1
 ```
 
-![ダンボール有](https://user-images.githubusercontent.com/47661559/177715451-16ba89ac-fcd3-4529-a745-0fc2129ee838.jpg)
+![230207_1min](https://user-images.githubusercontent.com/47661559/217153483-3f0685ae-dc6b-4e9e-8c31-9cd35c0a3bc7.jpg)
 
 # Author
 
