@@ -25,7 +25,7 @@ elif plt_pitch==1800:
 elif plt_pitch == 1:
     plt_name = "1m"
 
-ch_inner = int(sys.argv[3])     # 庫内 channel
+ch_inner = int(sys.argv[4])     # 庫内 channel
 
 
 # Debug
