@@ -2,7 +2,7 @@
 解凍テストcsvデータによるグラフ自動生成プログラム
 
 
-計測ソフトより生成したCSVファイルを読み込み、1時間ごとの温度を新しいリストに追加し、それをプロットする
+計測用ソフトウェアより生成したCSVファイルを読み込み、指定した時間ピッチ毎の温度を新しいリストに追加し、それをプロットする
 
 その際、
 
@@ -44,7 +44,7 @@ python3 ./(cloned dir)/DefrostTest/main.py argv1 argv2 argv3 argv4
 * argv1: Path to csv file
 * argv2: Channel number
 * argv3: Plot pitch
-    ex)1s = 1, 1min = 60, 1hour = 3600
+    ex)1sec = 1, 1min = 60, 30min = 1800, 1hour = 3600
 * argv4: Enviroment channel
 
 # Example
