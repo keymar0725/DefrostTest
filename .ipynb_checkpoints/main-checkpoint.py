@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import csv
+import imp
 import sys
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -18,17 +18,16 @@ os.makedirs(out_dir, exist_ok=True)
 import_file = sys.argv[1]       # csv file
 ch_num = int(sys.argv[2])       # channel number
 plt_pitch = int(sys.argv[3])    # plot pitch
-ch_env = int(sys.argv[4])       # enviroment channel
+if plt_pitch==3600:
+    plt_name = "1h"
+elif plt_pitch==1800:
+    plt_name = "30min"
+elif plt_pitch==60:
+    plt_name = "1min"
+elif plt_pitch==1:
+    plt_name = "1sec"
 
-dictionary = {3600:"1h",
-              1800:"30min",
-              60:"1min",
-              1:"1sec",
-              }
-
-plt_name = dictionary[plt_pitch]
-print(plt_name)
-
+ch_env = int(sys.argv[4])     # enviroment channel
 
 
 # Debug
