@@ -25,16 +25,17 @@ dictionary = {3600:"1h",
               60:"1min",
               1:"1sec",
               }
-
 plt_name = dictionary[plt_pitch]
-print(plt_name)
 
-
+# Input for Zip
+pitches = [3600, 1800, 60, 1]
+x_names = ["[h]", "[0.5h]", "[m]", "[s]"]
 
 # Debug
 print("Input File: {0} ({1})".format(os.path.basename(import_file), type(import_file)))
 print("Channel Number: {0} ({1})".format(ch_num, type(ch_num)))
 print("Plot Picth: {0} ({1})".format(plt_pitch, type(plt_pitch)))
+print("Plot Name: {0} ({1})".format(plt_name, type(plt_name)))
 print("Inner Channel: {0} ({1})".format(ch_env, type(ch_env)))
 out_name = os.path.basename(import_file).rstrip('.CSV')
 print("Output Name: {0} ({1})".format(out_name, type(out_name)))
@@ -70,6 +71,7 @@ _df = _df[1:].astype(float)                            # DF update
 # list plot points
 channels = []
 ch_names = []
+
 for i in range(ch_num):
     ch = str(i)
     ch = []
@@ -92,21 +94,20 @@ for ch, j in zip(channels, range(ch_num)):
             print("ch{0} : {1} sec".format(j+1, len(ch)))
         ch.append(a)
 
+
 # Plot init
 fig = plt.figure(figsize=(9, 7), dpi=300)
 ax = fig.add_subplot(111)
-ax.set_title('Unfreeze Test: {}'.format(out_name), fontsize=18)
+ax.set_title('Defrost Test: {}'.format(out_name), fontsize=18)
 ax.set_ylabel('Temparature [℃]', fontsize=16)
-ax.axhline(y=0, color='red', lw=1, ls='--')
+ax.axhline(y=0, color='red', lw=1, ls='--')     # DefrostLine(0℃) Output
 
-if plt_pitch==3600:
-    ax.set_xlabel('Time [h]', fontsize=16)
-elif plt_pitch==1800:
-    ax.set_xlabel('Time [0.5h]', fontsize=16)
-elif plt_pitch==60:
-    ax.set_xlabel('Time [min]', fontsize=16)
-elif plt_pitch==1:
-    ax.set_xlabel('Time [sec]', fontsize=16)
+for pitch,x in zip(pitches,x_names):
+    if plt_pitch==pitch:
+        ax.set_xlabel('Time'+x, fontsize=16)
+    else:
+        continue
+
 
 # Plot
 for ch, names in zip(channels, ch_names):
