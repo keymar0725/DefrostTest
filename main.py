@@ -6,6 +6,7 @@ import pandas as pd
 from matplotlib import rcParams
 import os
 import os.path
+import datetime
 
 ### Init ###
 rcParams["font.family"] = "sans-serif"
@@ -20,6 +21,9 @@ ch_num = int(sys.argv[2])       # channel number
 plt_pitch = int(sys.argv[3])    # plot pitch
 ch_env = int(sys.argv[4])       # enviroment channel
 
+if plt_pitch!=1 and plt_pitch%60!=0:
+    sys.exit("Error!:Plot Pitch")
+
 dictionary = {3600:"1h",
               1800:"30min",
               60:"1min",
@@ -32,13 +36,13 @@ pitches = [3600, 1800, 60, 1]
 x_names = ["[h]", "[0.5h]", "[m]", "[s]"]
 
 # Debug
-print("Input File: {0} ({1})".format(os.path.basename(import_file), type(import_file)))
-print("Channel Number: {0} ({1})".format(ch_num, type(ch_num)))
-print("Plot Picth: {0} ({1})".format(plt_pitch, type(plt_pitch)))
-print("Plot Name: {0} ({1})".format(plt_name, type(plt_name)))
-print("Inner Channel: {0} ({1})".format(ch_env, type(ch_env)))
+print("Input File: {0} ({1})".format(os.path.basename(import_file)))
+print("Channel Number: {0} ({1})".format(ch_num))
+print("Plot Picth: {0} ({1})".format(plt_pitch))
+print("Plot Name: {0} ({1})".format(plt_name))
+print("Inner Channel: {0} ({1})".format(ch_env))
 out_name = os.path.basename(import_file).rstrip('.CSV')
-print("Output Name: {0} ({1})".format(out_name, type(out_name)))
+print("Output Name: {0} ({1})".format(out_name))
 
 ######
 
@@ -77,7 +81,10 @@ for i in range(ch_num):
     ch = []
     channels.append(ch)
     
-    ch_name = "ch{}".format(i+1)
+    if i+1==ch_env:
+        ch_name = "ch{}(ENV)".format(i+1)
+    else:
+        ch_name = "ch{}".format(i+1)
     ch_names.append(ch_name)
 
 
@@ -113,6 +120,12 @@ for pitch,x in zip(pitches,x_names):
 for ch, names in zip(channels, ch_names):
     ax.plot(ch, label = names)
 
+# Date Input
+t_delta = datetime.timedelta(hours=9)
+JST = datetime.timezone(t_delta, 'JST')
+now = datetime.datetime.now(JST)
+d = now.strftime('%Y%m%d')
+
 ax.legend()
 fig.show()
-fig.savefig(out_dir + "{0}_{1}".format(out_name, plt_name)+".jpg")
+fig.savefig(out_dir + "{0}.{1}.{2}".format(out_name, plt_name,d)+".jpg")
