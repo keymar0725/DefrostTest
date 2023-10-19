@@ -43,11 +43,11 @@ or
 python3 ./(cloned dir)/DefrostTest/main.py argv1 argv2 argv3 argv4
 ```
 
-* argv1: Path to csv file
-* argv2: Channel number
-* argv3: Plot pitch
+* argv1: Path to csv file (csvファイルへの絶対パス)
+* argv2: Channel number (チャンネル数＝温度センサーのこと)
+* argv3: Plot pitch (グラフに記録する点のピッチ、1ピッチ1秒とする)
     ex)1sec = 1, 1min = 60, 30min = 1800, 1hour = 3600
-* argv4: Environment channel
+* argv4: Environment channel (環境温度のセンサーチャンネル)
 
 # Example
 
